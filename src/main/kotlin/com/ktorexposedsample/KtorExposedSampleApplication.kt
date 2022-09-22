@@ -8,13 +8,12 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 class KtorExposedSampleApplication {
-	@Autowired
-	private lateinit var db: DbConnectionConfig
-	@Autowired
-	private lateinit var webServer: WebServerConfig
 
 	init {
+		val db= DbConnectionConfig()
+		val webServer = WebServerConfig()
 		db.connect()
+		db.migrate()
 		webServer.connect()
 	}
 }

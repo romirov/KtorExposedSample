@@ -4,13 +4,12 @@ import mu.KLogging
 import org.flywaydb.core.Flyway
 import org.jetbrains.exposed.sql.Database
 import org.springframework.context.annotation.Configuration
-import java.awt.SystemColor.info
 
 @Configuration
-class DbConnectionConfig {
+class DatabaseConnectionConfig {
     companion object: KLogging()
 
-    private val url = "jdbc:postgresql://localhost:5432/posgres"
+    private val url = "jdbc:postgresql://localhost:5432/postgres"
     private val driver = "org.postgresql.Driver"
     private val user = "postgres"
     private val password = "postgres"

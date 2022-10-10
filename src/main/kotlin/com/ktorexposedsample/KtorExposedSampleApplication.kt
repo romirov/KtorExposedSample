@@ -1,8 +1,7 @@
 package com.ktorexposedsample
 
-import com.ktorexposedsample.config.DbConnectionConfig
+import com.ktorexposedsample.config.DatabaseConnectionConfig
 import com.ktorexposedsample.config.WebServerConfig
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -10,7 +9,7 @@ import org.springframework.boot.runApplication
 class KtorExposedSampleApplication {
 
 	init {
-		val db= DbConnectionConfig()
+		val db= DatabaseConnectionConfig()
 		val webServer = WebServerConfig()
 		db.connect()
 		db.migrate()

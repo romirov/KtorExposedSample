@@ -97,6 +97,12 @@
 			<artifactId>kotlin-logging-jvm</artifactId>
 			<version>2.1.23</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlinx</groupId>
+			<artifactId>kotlinx-serialization-json-jvm</artifactId>
+			<version>1.4.0</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

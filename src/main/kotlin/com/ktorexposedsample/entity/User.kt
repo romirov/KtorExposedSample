@@ -4,9 +4,11 @@ import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.LongEntity
 import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.LongIdTable
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class User (
-  val name: String,
+  val name: String
 )
 
 object UserTable: LongIdTable("users") {

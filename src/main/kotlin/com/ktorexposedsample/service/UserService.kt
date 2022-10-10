@@ -13,8 +13,9 @@ import org.springframework.stereotype.Service
 class UserService {
 
   fun add(user: User) = transaction {
+    addLogger(StdOutSqlLogger)
     UserTableRow.new {
-      user.name
+      name = user.name
     }.toUser()
   }
 
@@ -25,7 +26,7 @@ class UserService {
 
   fun findAll() = transaction {
     addLogger(StdOutSqlLogger)
-    val users = UserTableRow.all().map { it.toUser() }
+    UserTableRow.all().map { it.toUser() }
   }
 
   fun updateById(id: Long, user: User) = transaction {

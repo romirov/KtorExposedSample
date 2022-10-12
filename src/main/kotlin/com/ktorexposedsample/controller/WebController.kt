@@ -7,18 +7,17 @@ import io.ktor.server.application.*
 import io.ktor.server.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.request.*
-import org.springframework.stereotype.Controller
 
 fun Application.configureRouting() {
     val userService = UserService()
     routing {
         get("/user") {
             val users = userService.findAll()
-            call.respond(users)
+            call.respond(users.toString())
         }
 
         get("/user/{id?}") {
-            val id = call.parameters["id"]?: return@get call.respondText(
+            val id = call.parameters["id"] ?: return@get call.respondText(
                 "Missing id",
                 status = HttpStatusCode.BadRequest
             )
@@ -26,11 +25,11 @@ fun Application.configureRouting() {
                 "Not Found",
                 status = HttpStatusCode.NotFound
             )
-            call.respond(user)
+            call.respondText(user.toString())
         }
 
         post("/user/add") {
-            val name = call.parameters["name"]?: return@post call.respondText(
+            val name = call.parameters["name"] ?: return@post call.respondText(
                 "Missing name",
                 status = HttpStatusCode.BadRequest
             )
@@ -39,7 +38,7 @@ fun Application.configureRouting() {
         }
 
         put("/user/update/{id?}") {
-            val id = call.parameters["id"]?: return@put call.respondText(
+            val id = call.parameters["id"] ?: return@put call.respondText(
                 "Missing id",
                 status = HttpStatusCode.BadRequest
             )
@@ -57,7 +56,7 @@ fun Application.configureRouting() {
         }
 
         delete("/user/delete/{id?}") {
-            val id = call.parameters["id"]?: return@delete call.respondText(
+            val id = call.parameters["id"] ?: return@delete call.respondText(
                 "Missing id",
                 status = HttpStatusCode.BadRequest
             )

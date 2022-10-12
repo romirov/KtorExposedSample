@@ -11,6 +11,12 @@ data class User (
   val name: String
 )
 
+@Serializable
+data class UserDto (
+  val id: Long,
+  val name: String
+)
+
 object UserTable: LongIdTable("users") {
   val name = varchar("name", 255)
 }
@@ -21,4 +27,5 @@ class UserTableRow(id: EntityID<Long>): LongEntity(id) {
   var name by UserTable.name
 
   fun toUser() = User( name )
+  fun toUserDto() = UserDto( id.value, name )
 }

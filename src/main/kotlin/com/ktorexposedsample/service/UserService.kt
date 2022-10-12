@@ -16,24 +16,24 @@ class UserService {
     addLogger(StdOutSqlLogger)
     UserTableRow.new {
       name = user.name
-    }.toUser()
+    }.toUserDto()
   }
 
   fun findById(id: Long) = transaction{
     addLogger(StdOutSqlLogger)
-    UserTableRow.findById(id)?.toUser()
+    UserTableRow.findById(id)?.toUserDto()
   }
 
   fun findAll() = transaction {
     addLogger(StdOutSqlLogger)
-    UserTableRow.all().map { it.toUser() }
+    UserTableRow.all().map { it.toUserDto() }
   }
 
   fun updateById(id: Long, user: User) = transaction {
     addLogger(StdOutSqlLogger)
     val userFromDb = UserTableRow.findById(id)
     userFromDb?.name = user.name
-    userFromDb?.toUser()
+    userFromDb?.toUserDto()
   }
 
   fun deleteById(id: Long) = transaction {

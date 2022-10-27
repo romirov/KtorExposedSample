@@ -37,6 +37,7 @@ class UserService {
   }
 
   fun deleteById(id: Long) = transaction {
+    addLogger(StdOutSqlLogger)
     UserTableRow.findById(id)?.let {
       it.delete()
       return@transaction true
@@ -45,6 +46,7 @@ class UserService {
   }
 
   fun deleteAll() = transaction {
+    addLogger(StdOutSqlLogger)
     UserTable.deleteAll()
   }
 }

@@ -9,6 +9,7 @@ import io.ktor.server.testing.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -38,19 +39,24 @@ class WebControllerTest {
     }, block)
   }
 
-  fun addUserTest() {
-    var user: UserDto? = null
+  fun addUser(user: User) {
+    var userDto: UserDto? = null
     withServer {
       handleRequest(HttpMethod.Post, "/add") {
         addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
         setBody(Json.encodeToString(user))
       }.apply {
         assertEquals(response.status(), HttpStatusCode.OK)
-        user =
+        userDto =
             Json.decodeFromString(response.content.toString())
-        assertNotNull(user?.id)
-        assertTrue { user?.id!! > 0L }
+        assertNotNull(userDto?.id)
+        assertTrue { userDto?.id!! > 0L }
       }
     }
+  }
+
+  @Test
+  fun addUserTest(){
+    addUser(user)
   }
 }

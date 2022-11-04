@@ -4,6 +4,7 @@ import com.ktorexposedsample.entity.User
 import com.ktorexposedsample.service.UserService
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.encodeToString
@@ -31,12 +32,9 @@ fun Application.userRouting() {
             }
 
             post("/add") {
-                val name = call.parameters["name"] ?: return@post call.respondText(
-                    "Missing name",
-                    status = HttpStatusCode.BadRequest
-                )
-                val user = userService.add(User(name))
-                call.respond(Json.encodeToString(user))
+                val user = call.receive<User>()
+                val userDto = userService.add(user)
+                call.respond(Json.encodeToString(userDto))
             }
 
             put("/update/{id?}") {

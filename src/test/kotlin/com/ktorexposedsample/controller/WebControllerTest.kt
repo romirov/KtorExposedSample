@@ -42,7 +42,7 @@ class WebControllerTest {
   fun addUser(user: User) {
     var userDto: UserDto? = null
     withServer {
-      handleRequest(HttpMethod.Post, "/add") {
+      handleRequest(HttpMethod.Post, "/user/add") {
         addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
         setBody(Json.encodeToString(user))
       }.apply {

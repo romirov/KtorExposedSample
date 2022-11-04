@@ -55,7 +55,7 @@ fun Application.userRouting() {
                 call.respondText("Delete all users", status = HttpStatusCode.OK)
             }
 
-            delete("/user/delete/{id?}") {
+            delete("/delete/{id?}") {
                 val id = call.parameters["id"] ?: return@delete call.respondText(
                     "Missing id",
                     status = HttpStatusCode.BadRequest

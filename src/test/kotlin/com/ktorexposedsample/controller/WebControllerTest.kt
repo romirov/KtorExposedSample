@@ -19,7 +19,12 @@ class WebControllerTest {
   private val config = HoconApplicationConfig(ConfigFactory.load("application.conf"))
   private val prefix = "ktor.jwt"
   private val propList =
-      listOf("$prefix.domain", "$prefix.audience", "$prefix.realm", "$prefix.secret", "$prefix.validityMs")
+      listOf(
+          "$prefix.domain",
+          "$prefix.audience",
+          "$prefix.realm",
+          "$prefix.secret",
+          "$prefix.validityMs")
   private val user = User("Test User")
 
   private fun withServer(block: TestApplicationEngine.() -> Unit) {
@@ -36,7 +41,7 @@ class WebControllerTest {
   fun addUserTest() {
     var user: UserDto? = null
     withServer {
-      handleRequest(HttpMethod.Post, "/add"){
+      handleRequest(HttpMethod.Post, "/add") {
         addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
         setBody(Json.encodeToString(user))
       }.apply {

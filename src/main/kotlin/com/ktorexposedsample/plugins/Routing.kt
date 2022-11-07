@@ -42,9 +42,6 @@ fun Application.configureRouting() {
                     return@put call.respond(HttpStatusCode.BadRequest, "Missing id")
                 }
                 val user = call.receive<User>()
-                if(user == null) {
-                    return@put call.respond(HttpStatusCode.BadRequest, "Request body")
-                }
                 val userDto = userService.updateById(id.toLong(), user)
                 if (userDto == null){
                     return@put call.respond( HttpStatusCode.NotFound, "Not Found")

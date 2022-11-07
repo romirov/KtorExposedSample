@@ -9,14 +9,13 @@ import org.springframework.boot.runApplication
 class KtorExposedSampleApplication {
 
 	init {
-		val db= DatabaseConnectionConfig()
+		val db = DatabaseConnectionConfig()
 		val webServer = WebServerConfig()
 		db.connect()
 		db.migrate()
 		webServer.connect()
 	}
 }
-
 
 fun main(args: Array<String>) {
 	runApplication<KtorExposedSampleApplication>(*args)
